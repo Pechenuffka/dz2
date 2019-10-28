@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+    int i = 0, perviy = 0, vtoroy = 0;
+    char e, r;
+    char *pnhp = NULL;
+    FILE *graphfile = fopen("graphfile.dot", "w");
+    if (graphfile == NULL) {
+        printf("ne otrivaetsya");
+        exit(0);
+    } else {
+        printf("Graph: \n1.neorientirovanniy \n2.orientirovanniy \n");
+        r = (char) getchar();
+        switch (r) {
+        case '0':
+            fputs("digraph t { ", graphfile);
+            break;
+      case '1':
+            fputs("graph t { ", graphfile);
+            break;
+        default:
+            printf("error \n");
+            exit(0);
+        }
+        printf("describe your graph: \n");
+    	getchar();
+while (e != '\n'){
+e = (char) getchar();
+pnhp = (char *) realloc(pnhp, (i + 1) * sizeof(char));
+pnhp[i] = e;
+i++;
+}
+for (int tmp = 0; tmp < i; tmp++){
+putc(pnhp[tmp], graphfile);
+}
+}
+    fputs(" }", graphfile);
+    fclose(graphfile);
+}
